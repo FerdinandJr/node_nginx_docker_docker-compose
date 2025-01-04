@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app1:
+    build: .
+    environment:
+      - APP_NAME=App1
+    ports:
+      - "6061:80"
+
+  app2:
+    build: .
+    environment:
+      - APP_NAME=App2
+    ports:
+      - "6062:80"
+
+  app3:
+    build: .
+    environment:
+      - APP_NAME=App3
+    ports:
+      - "6063:80"
