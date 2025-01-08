@@ -1,22 +1,27 @@
-version: '3'
+version: '3.8'
+
 services:
   app1:
-    build: .
-    environment:
-      - APP_NAME=App1
+    build: ./app1
     ports:
-      - "6061:80"
-
+      - "3001:3001"
+    networks:
+      - node_network
+  
   app2:
-    build: .
-    environment:
-      - APP_NAME=App2
+    build: ./app2
     ports:
-      - "6062:80"
-
+      - "3002:3002"
+    networks:
+      - node_network
+  
   app3:
-    build: .
-    environment:
-      - APP_NAME=App3
+    build: ./app3
     ports:
-      - "6063:80"
+      - "3003:3003"
+    networks:
+      - node_network
+
+networks:
+  node_network:
+    driver: bridge
