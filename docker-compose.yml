@@ -2,21 +2,21 @@ version: '3.8'
 
 services:
   app1:
-    build: ./app1
+    build: ./nodejs1
     ports:
       - "3001:3001"
     networks:
       - node_network
   
   app2:
-    build: ./app2
+    build: ./nodejs2
     ports:
       - "3002:3002"
     networks:
       - node_network
   
   app3:
-    build: ./app3
+    build: ./nodejs3
     ports:
       - "3003:3003"
     networks:
