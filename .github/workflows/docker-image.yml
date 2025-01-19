@@ -1,18 +1,22 @@
-name: Docker Image CI
-
+name: Build and Publish image to Docker Hub
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main # Triggers the workflow on pushes to the "main" branch.
+    paths:
+      - 'Dockerfile'
 
 jobs:
-
-  build:
-
+  publish_images:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # Step 1: Check out the code from your repository
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: build image
+        run: |
+          docker build . -t ferdinandjrdocker/node_nginx_docker:latest
+      - name: push image to docker hub
+        run: |
+          docker login -u ferdinandjrdocker -p ${{ secrets.DOCKER_HUB_TOKEN }}  
+          docker push ferdinandjrdocker/node_nginx_docker:latest
