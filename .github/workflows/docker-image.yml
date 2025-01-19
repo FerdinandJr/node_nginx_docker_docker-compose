@@ -4,7 +4,7 @@ on:
     branches:
       - main # Triggers the workflow on pushes to the "main" branch..
     paths:
-      - 'Dockerfile'
+      - 'nodejs1/Dockerfile'
 
 jobs:
   publish_images:
