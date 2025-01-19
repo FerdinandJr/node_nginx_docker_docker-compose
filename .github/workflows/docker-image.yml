@@ -2,7 +2,7 @@ name: Build and Publish image to Docker Hub
 on:
   push:
     branches:
-      - main # Triggers the workflow on pushes to the "main" branch..
+      - main
     paths:
       - 'nodejs1/Dockerfile'
 
@@ -10,13 +10,17 @@ jobs:
   publish_images:
     runs-on: ubuntu-latest
     steps:
-    # Step 1: Check out the code from your repository
-      - name: checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: build image
-        run: |
-          docker build . -t ferdinandjrdocker/node_nginx_docker:latest
-      - name: push image to docker hub
-        run: |
-          docker login -u ferdinandjrdocker -p ${{ secrets.DOCKER_HUB_TOKEN }}  
-          docker push ferdinandjrdocker/node_nginx_docker:latest
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ferdinandjrdocker --password-stdin
+
+      - name: Build Docker image
+        run: docker build ./nodejs1 -t ferdinandjrdocker/node_nginx_docker:latest
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ferdinandjrdocker/node_nginx_docker:latest
