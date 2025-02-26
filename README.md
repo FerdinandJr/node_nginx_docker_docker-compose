@@ -268,3 +268,7 @@ docker-compose down
 ## Video
 
 ### How to use Nginx as a Webserver, Reverse proxy and load balancer: https://youtu.be/whZWj2XN9MI?si=bTNzKoYXMV5yV315
+
+### How to use dockerfile and docker-compose: https://youtu.be/i_Q0bczGDzQ?si=7X5ug5_LfZcClsH9
+
+### How to deploy an application using Nginx and Docker: https://youtu.be/LM-vV1CsoLc?si=WUQNlueF6o9cHMfI
